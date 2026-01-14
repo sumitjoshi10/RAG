@@ -6,3 +6,8 @@ text_document:
   document_encoding: utf-8
   document_path: ${document_root}/${text_document.document_file_name}
 
+csv_document:
+  document_file_type: csv
+  document_file_name: sample_data.csv
+  document_encoding: utf-8
+  document_path: ${document_root}/${csv_document.document_file_name}

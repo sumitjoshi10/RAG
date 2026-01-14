@@ -2,6 +2,7 @@ from src.rag.constants.constants import *
 from src.rag.utility.utils import read_yaml
 from src.rag.components.load_data import load_txt_document
 from src.rag.components.chunking import chunk_documents
+from src.rag.components.embedding import create_embeddings
 
 
 config = read_yaml(CONFIG_FILE_PATH)
@@ -21,8 +22,12 @@ def rag_pipeline(querry:str ="The querry to be answered"):
     ## Step 2: Chunk Document
     print(params.chunking.separators)
     chunked_documents = chunk_documents(document=document,
-                                      seperator=params.chunking.separators,
-                                      chunk_size=params.chunking.chunk_size,
-                                      chunk_overlap=params.chunking.chunk_overlap)
+                                        seperator=params.chunking.separators,
+                                        chunk_size=params.chunking.chunk_size,
+                                        chunk_overlap=params.chunking.chunk_overlap)
     
-    return chunked_documents
+    ## Step 3: Create Embeddings
+    embeddings = create_embeddings(chunks=chunked_documents,
+                                   model_name=params.embedding.model_name)
+    
+    return embeddings

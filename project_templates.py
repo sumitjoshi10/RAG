@@ -4,7 +4,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 
-project_name = "RAG"
+project_name = "rag"
 
 list_of_files = [
     f"src/{project_name}/__init__.py",

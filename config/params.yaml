@@ -1,0 +1,8 @@
+chunking:
+  separators:
+    - "\n\n"
+    - "\n"
+    - "."
+    - " "
+  chunk_size: 500
+  chunk_overlap: 20

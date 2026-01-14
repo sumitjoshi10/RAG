@@ -4,3 +4,7 @@ langchain
 langchain-community
 langchain-huggingface
 sentence-transformers
+numpy
+scikit-learn
+
+# -e .

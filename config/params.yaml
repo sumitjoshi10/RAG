@@ -9,3 +9,7 @@ chunking:
 
 embedding:
   model_name: "sentence-transformers/all-MiniLM-L6-v2"
+
+semantic_search:
+  top_k: 1
+  similarity_score_limit: 0.25

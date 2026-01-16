@@ -3,8 +3,11 @@ pyyaml
 langchain
 langchain-community
 langchain-huggingface
+langchain-chroma
+Chroma
 sentence-transformers
 numpy
+pandas
 scikit-learn
 
 # -e .

@@ -1,11 +1,5 @@
 document_root: data
 
-text_document:
-  document_file_type: txt
-  document_file_name: daraz_faq.txt
-  document_encoding: utf-8
-  document_path: ${document_root}/${text_document.document_file_name}
-
 csv_document:
   document_file_type: csv
   document_file_name: daraz_faq_final.csv

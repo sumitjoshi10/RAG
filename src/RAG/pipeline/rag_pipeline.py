@@ -5,11 +5,6 @@ from src.rag.components.faq_data_ingestion import faq_data_ingestion
 from src.rag.components.get_relevent_qa import get_relevant_qa
 
 
-from src.rag.components.load_data import load_txt_document
-from src.rag.components.chunking import chunk_documents
-from src.rag.components.embedding import create_embeddings
-from src.rag.components.query_embedding import generate_query_embedding
-from src.rag.components.semantic_search import semantic_search
 
 
 config = read_yaml(CONFIG_FILE_PATH)
@@ -25,7 +20,7 @@ chroma_client = get_chroma_client(
 collection_name = params.chroma_db.collection_name
 
 
-def rag_pipeline(query:str):
+def rag_pipeline():
     existing_collections = chroma_client.list_collections()
     print(existing_collections)
     
@@ -43,16 +38,15 @@ def rag_pipeline(query:str):
     else:
         print(f"Collection {collection_name} already exists")
     
-    answers = get_relevant_qa(query=query,
-                             collection_name= collection_name,
+    retreiver = get_relevant_qa(collection_name= collection_name,
                              embedding_model=params.embedding.model_name,
                              chroma_client = chroma_client,
-                             k= params.semantic_search.top_k)
+                             params= params.semantic_search)
     
 
-    answers = semantic_search(answers=answers, params=params.semantic_search)
+    # answers = semantic_search(answers=answers, params=params.semantic_search)
     
-    return answers
+    return retreiver
     
 # def rag_pipeline(query:str ="The querry to be answered"):
 #     """

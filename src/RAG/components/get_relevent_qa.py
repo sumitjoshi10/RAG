@@ -2,7 +2,7 @@ from langchain_chroma import Chroma
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 
 
-def get_relevant_qa(query:str, collection_name: str, embedding_model: str, chroma_client, k: int):
+def get_relevant_qa(collection_name: str, embedding_model: str, chroma_client, params):
     
     # Embedding Function for Chroma DB
     ef = HuggingFaceEmbeddings(model_name=embedding_model)
@@ -14,10 +14,14 @@ def get_relevant_qa(query:str, collection_name: str, embedding_model: str, chrom
         client=chroma_client     
     )
     
-    ### Option 1 Can directly return doing the similarity search
-    return vectordb.similarity_search_with_relevance_scores(query, k=k)
     
-    retriever = vectordb.as_retriever()
+    retriever = vectordb.as_retriever(
+        search_type=params.search_type, 
+        search_kwargs={"score_threshold": params.similarity_score_limit,
+                       "k" : params.top_k}
+    )
+
+    return retriever
     
     
     

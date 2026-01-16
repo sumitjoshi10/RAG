@@ -1,16 +1,8 @@
-# chunking:
-#   separators:
-#     - "\n\n"
-#     - "\n"
-#     - "."
-#     - " "
-#   chunk_size: 500
-#   chunk_overlap: 20
-
 embedding:
   model_name: "sentence-transformers/all-MiniLM-L6-v2"
 
 semantic_search:
+  search_type: "similarity_score_threshold"
   top_k: 2
   similarity_score_limit: 0.25
 

@@ -3,7 +3,7 @@ from src.rag.utility.utils import read_yaml, get_chroma_client
 
 from src.rag.components.faq_data_ingestion import faq_data_ingestion
 from src.rag.components.get_relevent_qa import get_relevant_qa
-from rag.components.similarity_score import similarity_score
+from src.rag.components.similarity_score import similarity_score
 
 ## Reading the Config Files
 config = read_yaml(CONFIG_FILE_PATH)
@@ -13,7 +13,7 @@ params = read_yaml(PARAMS_FILE_PATH)
 persistant_director = config.chroma_db.persistant_memory
 
 chroma_client = get_chroma_client(
-    # persistant_director    # Uncomment if you want persistant directory
+    persistant_director    # Uncomment if you want In Memory Chroma DB
     )
 
 collection_name = params.chroma_db.collection_name

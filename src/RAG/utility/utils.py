@@ -1,5 +1,7 @@
 from box import ConfigBox
 
+import chromadb
+
 from src.rag.utility.utils_helper import resolve_config
 
 
@@ -21,3 +23,14 @@ def read_yaml(path_to_yaml: str) -> ConfigBox:
             return ConfigBox(content)
     except Exception as e:
         raise e  
+    
+def get_chroma_client(persistant_director:str = None):
+    '''
+    It will
+    '''
+    if persistant_director is None:
+        # Create IN-MEMORY Chroma client
+        return chromadb.Client() 
+    else:
+        # Creat Persistant Client
+        return chromadb.PersistentClient(path=persistant_director)

@@ -8,6 +8,10 @@ text_document:
 
 csv_document:
   document_file_type: csv
-  document_file_name: sample_data.csv
+  document_file_name: daraz_faq_final.csv
   document_encoding: utf-8
   document_path: ${document_root}/${csv_document.document_file_name}
+
+chroma_db:
+  vector_db_name: chroma_db
+  persistant_memory: ${document_root}/resources/${chroma_db.vector_db_name}
